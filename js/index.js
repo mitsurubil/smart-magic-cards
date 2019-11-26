@@ -37,21 +37,21 @@ function createButtons() {
   shuffleButton.classList = 'btn btn-lg btn-secondary';
   shuffleButton.innerHTML = 'Shuffle';
   shuffleButton.style.marginRight = '15px';
-  shuffleButton.onclick = shuffleCards;
+  // shuffleButton.onclick = shuffleCards;
   const showhideButton = document.createElement('button');
   showhideButton.type = 'button';
   showhideButton.id = `'${buttons[1]}'`;
   showhideButton.classList = 'btn btn-lg btn-secondary';
   showhideButton.innerHTML = 'Show/Hide';
   showhideButton.style.marginRight = '15px';
-  showhideButton.onclick = showhide;
+  // showhideButton.onclick = showhide;
   const magicButton = document.createElement('button');
   magicButton.type = 'button';
   magicButton.id = `'${buttons[2]}'`;
   magicButton.classList = 'btn btn-lg btn-secondary';
   magicButton.innerHTML = 'Magic';
   magicButton.style.marginRight = '15px';
-  magicButton.onclick = magic;
+  // magicButton.onclick = magic;
   btnWrapper.append(shuffleButton, showhideButton, magicButton);
 }
 
