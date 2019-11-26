@@ -44,7 +44,7 @@ function createButtons() {
   showhideButton.classList = 'btn btn-lg btn-secondary';
   showhideButton.innerHTML = 'Show/Hide';
   showhideButton.style.marginRight = '15px';
-  // showhideButton.onclick = showhide;
+  showhideButton.onclick = showhide;
   const magicButton = document.createElement('button');
   magicButton.type = 'button';
   magicButton.id = `'${buttons[2]}'`;
@@ -80,6 +80,11 @@ function shuffleCards() {
     shuffledCards.style.left = `${positionFromLeft}px`;
     cardsWrapper.replaceChild(shuffledCards, cardsWrapper.children[i]);
   });
+}
+
+// Function showhide to Show or Hide the cards.
+function showhide() {
+  cardsWrapper.classList.toggle('hidden');
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
