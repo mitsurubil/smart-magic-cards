@@ -31,13 +31,12 @@ function createButtons() {
   const buttons = ['shuffle', 'showhide', 'magic'];
   const btnWrapper = document.querySelector('.btn-wrapper');
   const shuffleButton = document.createElement('button');
-  console.log(shuffleButton.type);
-  // shuffleButton.type = 'button';
+  shuffleButton.type = 'button';
   shuffleButton.id = `'${buttons[0]}'`;
   shuffleButton.classList = 'btn btn-lg btn-secondary';
   shuffleButton.innerHTML = 'Shuffle';
   shuffleButton.style.marginRight = '15px';
-  // shuffleButton.onclick = shuffleCards;
+  shuffleButton.onclick = shuffleCards;
   const showhideButton = document.createElement('button');
   showhideButton.type = 'button';
   showhideButton.id = `'${buttons[1]}'`;
@@ -60,6 +59,26 @@ function createButtons() {
 function startGame() {
   createButtons();
   createCards();
+}
+
+// Function to shuffle the cards.
+function shuffleCards() {
+  let shuffleCards = cards;
+  let d = shuffleCards.length, i;
+  while (d) {
+    i = Math.floor(Math.random() * d--);
+    [shuffleCards[d], shuffleCards[i]] = [shuffleCards[i], shuffleCards[d]];
+  }
+
+  // For each dataObject, replace the previous card and append it to the DOM
+  shuffleCards.forEach((card, i) => {
+    const positionFromLeft = i * 30;
+    const shuffledCards = document.createElement('div');
+    shuffledCards.setAttribute('data-value', card.value);
+    shuffledCards.classList.add('card', `${card.suit}-${card.value}`);
+    shuffledCards.style.left = `${positionFromLeft}px`;
+    cardsWrapper.replaceChild(shuffledCards, cardsWrapper.children[i]);
+  });
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
