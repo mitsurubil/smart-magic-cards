@@ -3,7 +3,7 @@ const cardsWrapper = document.querySelector('.cards-wrapper');
 const cards = [];
 
 function createCards() {
-  
+
   // Create an array with objects containing the value and the suit of each card
   for (let x = 0; x < suits.length; x++) {
     for (let i = 1; i <= 13; i += 1) {
@@ -51,7 +51,7 @@ function createButtons() {
   magicButton.classList = 'btn btn-lg btn-secondary';
   magicButton.innerHTML = 'Magic';
   magicButton.style.marginRight = '15px';
-  // magicButton.onclick = magic;
+  magicButton.onclick = magic;
   btnWrapper.append(shuffleButton, showhideButton, magicButton);
 }
 
@@ -85,6 +85,32 @@ function shuffleCards() {
 // Function showhide to Show or Hide the cards.
 function showhide() {
   cardsWrapper.classList.toggle('hidden');
+}
+
+// Function magic to reorder and sort the cards.
+function magic() {
+  let sortCards = cards;
+  sortCards.length = 0;
+  // Create an array with objects containing the value and the suit of each card
+  for (let x = 0; x < suits.length; x++) {
+    for (let i = 1; i <= 13; i += 1) {
+      const cardObject = {
+        value: i,
+        suit: suits[x],
+      };
+      sortCards.push(cardObject);
+    }
+  }
+
+  // For each dataObject, replace the previous card and append it to the DOM
+  sortCards.forEach((card, i) => {
+    const positionFromLeft = i * 30;
+    const sortedCards = document.createElement('div');
+    sortedCards.setAttribute('data-value', card.value);
+    sortedCards.classList.add('card', `${card.suit}-${card.value}`);
+    sortedCards.style.left = `${positionFromLeft}px`;
+    cardsWrapper.replaceChild(sortedCards, cardsWrapper.children[i]);
+  });
 }
 
 document.getElementById('start-game').addEventListener('click', startGame);
